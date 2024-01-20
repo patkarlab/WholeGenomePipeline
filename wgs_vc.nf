@@ -320,6 +320,7 @@ process somaticSeq_run {
 	sed -i 's/##INFO=<ID=VLK012,Number=6,Type=Integer,Description="Calling decision of the 6 algorithms: VarScan2, LoFreq, Strelka, SnvCaller_0, SnvCaller_1, SnvCaller_2">/##INFO=<ID=VLSFPH,Number=6,Type=String,Description="Calling decision of the 6 algorithms:  VarScan2, LoFreq, Strelka, Freebayes, Platypus, Haplotypecaller">/g' ${Sample}.somaticseq.vcf
 
 	sed -i 's/VLK012/VLSFPH/g' ${Sample}.somaticseq.vcf
+	cp ${Sample}.somaticseq.vcf ${PWD}/Final_Output/${Sample}/
 	#to extrac6t vaf,af,alt and ref count
 	${params.extract_somatic_script_path} ${Sample}.somaticseq.vcf ${Sample}.extractedSomaticseq.txt
 	#adding vep
@@ -340,7 +341,7 @@ process cava {
 		tuple val(Sample), file ("*.cava.csv")
 	script:
 	"""
-	${params.cava_path}/cava -c ${params.cava_path}/config_v2.txt -t 10 -i ${somaticVcf} -o ${Sample}.somaticseq
+	${params.cava_path}/cava -c ${params.cava_path}/config_v2.txt -t 10 -i ${PWD}/Final_Output/${Sample}/${Sample}.somaticseq.vcf -o ${Sample}.somaticseq
 	python3 ${params.cava_script_path} ${Sample}.somaticseq.txt ${Sample}.cava.csv
 	"""
 }

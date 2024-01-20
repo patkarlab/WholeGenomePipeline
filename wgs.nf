@@ -125,7 +125,7 @@ process generatefinalbam {
 	publishDir "$PWD/Final_Output/${Sample}/", mode: 'copy', pattern: '*.final.bam*'
 	publishDir "$PWD/Final_Output/${Sample}/", mode: 'copy', pattern: '*.final.bam.bai'
 	publishDir "$PWD/Final_Output/${Sample}/", mode: 'copy', pattern: '*.old_final.bam'
-    publishDir "$PWD/Final_Output/${Sample}/", mode: 'copy', pattern: '*.old_final.bam.bai'
+	publishDir "$PWD/Final_Output/${Sample}/", mode: 'copy', pattern: '*.old_final.bam.bai'
 	input:
 		tuple val (Sample), file (aligned_recalibrated_bam)
 	output:
