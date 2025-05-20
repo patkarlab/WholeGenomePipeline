@@ -1,0 +1,8 @@
+# to cout total numver of bases's e.g. 
+zcat 220373_CS27006_S91_L002_R1_001.fastq.gz | paste - - - - | cut -f2 | wc -c
+
+#to create a soft link e.g. 
+ln -s /home/nikhil/ETV6ABL1_WGS/220373_CS27006_S91_L002_R1_001.fastq.gz /home/diagnostics/pipelines/WholeGenomePipeline/sequences/220373_CS27006_S91_L002_R1_001.fastq.gz
+
+#to verify the link is created or not e.g. 
+ls -l /home/diagnostics/pipelines/WholeGenomePipeline/sequences/220373_CR9992_S93_L002_R2_001.fastq.gz
